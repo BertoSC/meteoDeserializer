@@ -80,6 +80,6 @@ public class PrediccionDia {
         LocalDate date = dateTime.toLocalDate();
         return date + " (Nivel aviso: " + nivelAviso +") , Máxima: " + tMax +" , Mínima: "+tMin+" , Índice Ultravioleta max: "+
                 uvMax + System.lineSeparator() +
-                ", listaVariableFranxa=" + listaVariableFranxa;
+                listaVariableFranxa;
     }
 }

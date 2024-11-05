@@ -2,6 +2,7 @@ package org.example;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -44,5 +45,20 @@ public class Main {
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
+
+        try (JsonReader jr = new JsonReader(new InputStreamReader(new URI(URL).toURL().openConnection().getInputStream()))) {
+            PrediccionReaderParser prp = new PrediccionReaderParser();
+            Prediccion p2 = prp.prediccionParser(jr);
+            System.out.println(p2);
+
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 }

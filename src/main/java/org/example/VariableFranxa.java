@@ -51,12 +51,11 @@ public class VariableFranxa {
 
     @Override
     public String toString() {
-        return "VariableFranxa{" +
-                "variableMeteorologica=" + variableMeteorologica +
-                ", valorManha=" + valorManha +
-                ", valorTarde=" + valorTarde +
-                ", valorNoche=" + valorNoche +
-                '}';
+        return VariableMeteoroloxica.getVariable(variableMeteorologica.getVariable()) +
+                ": Mañana= " + valorManha +
+                ", Tarde= " + valorTarde +
+                ", Noche =" + valorNoche + System.lineSeparator()
+                ;
     }
 }
 
