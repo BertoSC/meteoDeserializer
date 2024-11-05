@@ -29,9 +29,7 @@ public class Concello {
 
     @Override
     public String toString() {
-        return "Concello{" +
-                "idConcello=" + idConcello +
-                ", nome='" + nome + '\'' +
-                '}';
+        return nome + " ["+idConcello+"]";
+
     }
 }

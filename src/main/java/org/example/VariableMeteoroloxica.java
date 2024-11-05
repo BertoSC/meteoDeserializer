@@ -4,21 +4,26 @@ public enum VariableMeteoroloxica {
     CIELO("ceo"), LLUVIA("pchoiva"), TEMPERATURA_MAXIMA ("tmaxFranxa"),
     TEMPERATURA_MINIMA("tminFranxa"), VIENTO ("vento");
 
-    String variableMeteroloxica;
+    String variable;
 
-    VariableMeteoroloxica(String variableMeteroloxica) {
-        this.variableMeteroloxica = variableMeteroloxica;
+    VariableMeteoroloxica(String var){
+        this.variable = var;
     }
 
-    public String getVariableMeteroloxica() {
-        return variableMeteroloxica;
+    public String getVariable() {
+        return variable;
     }
 
-    public static VariableMeteoroloxica getVariableMeteoroloxica(String var){
-        for (VariableMeteoroloxica v : VariableMeteoroloxica.values()){
-            if (v.getVariableMeteroloxica().equalsIgnoreCase(var) ||  v.name().equalsIgnoreCase(var)){
+    public void setVariable(String variable) {
+        this.variable = variable;
+    }
+
+    public static VariableMeteoroloxica getVariable(String var){
+        for (VariableMeteoroloxica v:VariableMeteoroloxica.values()){
+            if (var.equals(v.getVariable())){
                 return v;
             }
+
         }
         return null;
     }

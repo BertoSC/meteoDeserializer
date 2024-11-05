@@ -5,6 +5,7 @@ import java.util.List;
 public class Prediccion {
     private Concello concello;
     private List<PrediccionDia> listaPredDiaConcello;
+    final static String BARRA = "-----------------------------------------";
 
     public Prediccion(){}
 
@@ -31,9 +32,18 @@ public class Prediccion {
 
     @Override
     public String toString() {
-        return "Prediccion{" +
-                "concello=" + concello +
-                ", listaPredDiaConcello=" + listaPredDiaConcello +
-                '}';
+
+            StringBuilder sb = new StringBuilder();
+            sb.append(concello).append(System.lineSeparator())
+                    .append(BARRA).append(System.lineSeparator());
+
+            for (PrediccionDia dia : listaPredDiaConcello) {
+                sb.append(dia).append(System.lineSeparator());
+            }
+
+
+
+            return sb.toString();
+
     }
 }

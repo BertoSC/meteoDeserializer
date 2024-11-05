@@ -1,5 +1,8 @@
 package org.example;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class PrediccionDia {
@@ -71,13 +74,12 @@ public class PrediccionDia {
 
     @Override
     public String toString() {
-        return "PrediccionDia{" +
-                "dataPredicion='" + dataPredicion + '\'' +
-                ", nivelAviso=" + nivelAviso +
-                ", tMax=" + tMax +
-                ", tMin=" + tMin +
-                ", uvMax=" + uvMax +
-                ", listaVariableFranxa=" + listaVariableFranxa +
-                '}';
+        String dateString = dataPredicion;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
+        LocalDate date = dateTime.toLocalDate();
+        return date + " (Nivel aviso: " + nivelAviso +") , Máxima: " + tMax +" , Mínima: "+tMin+" , Índice Ultravioleta max: "+
+                uvMax + System.lineSeparator() +
+                ", listaVariableFranxa=" + listaVariableFranxa;
     }
 }

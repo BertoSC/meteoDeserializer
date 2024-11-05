@@ -12,8 +12,10 @@ public class PrediccionDiaDeserializer implements JsonDeserializer<PrediccionDia
         JsonObject jo = jsonElement.getAsJsonObject();
         String dat = jo.get("dataPredicion").getAsString();
         int nivelAviso = 0;
+
         if (!jo.get("nivelAviso").isJsonNull()){
             jo.get("nivelAviso").getAsInt();
+
         } else {
             nivelAviso =0;
         }
@@ -32,15 +34,19 @@ public class PrediccionDiaDeserializer implements JsonDeserializer<PrediccionDia
         List<VariableFranxa> listaVariableFranxa = new ArrayList<>();
 
         JsonObject joC= jo.get("ceo").getAsJsonObject();
-        VariableFranxa cielo = crearVariable(VariableMeteoroloxica.CIELO, joC);
+        VariableFranxa cielo = crearVariable(VariableMeteoroloxica.getVariable("ceo"), joC);
+
         JsonObject joL= jo.get("pchoiva").getAsJsonObject();
-        VariableFranxa lluvia = crearVariable(VariableMeteoroloxica.LLUVIA, joL);
+        VariableFranxa lluvia = crearVariable(VariableMeteoroloxica.getVariable("pchoiva"), joL);
+
         JsonObject joTmax= jo.get("tmaxFranxa").getAsJsonObject();
-        VariableFranxa tempMax = crearVariable(VariableMeteoroloxica.TEMPERATURA_MAXIMA, joTmax);
+        VariableFranxa tempMax = crearVariable(VariableMeteoroloxica.getVariable("tmaxFranxa"), joTmax);
+
         JsonObject joTmin= jo.get("tminFranxa").getAsJsonObject();
-        VariableFranxa tempMin = crearVariable(VariableMeteoroloxica.TEMPERATURA_MINIMA, joTmin);
+        VariableFranxa tempMin = crearVariable(VariableMeteoroloxica.getVariable("tminFranxa"), joTmin);
+
         JsonObject joVent= jo.get("vento").getAsJsonObject();
-        VariableFranxa viento = crearVariable(VariableMeteoroloxica.VIENTO, joVent);
+        VariableFranxa viento = crearVariable(VariableMeteoroloxica.getVariable("vento"), joVent);
 
         listaVariableFranxa.add(cielo);
         listaVariableFranxa.add(lluvia);
