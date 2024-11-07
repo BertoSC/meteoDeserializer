@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class PrediccionDia {
-    private String dataPredicion; // Guádala para que la ponga mejor como LocalDate
+    private LocalDate dataPredicion; // Guádala para que la ponga mejor como LocalDate
     private int nivelAviso;
     private int tMax;
     private int tMin;
@@ -16,7 +16,7 @@ public class PrediccionDia {
     public PrediccionDia(){}
 
     public PrediccionDia(String dataPredicion, int nivelAviso, int tMax, int tMin, int uvMax, List<VariableFranxa> listaVariableFranxa) {
-        this.dataPredicion = dataPredicion;
+        this.dataPredicion = LocalDateTime.parse(dataPredicion).toLocalDate();
         this.nivelAviso = nivelAviso;
         this.tMax = tMax;
         this.tMin = tMin;
@@ -24,11 +24,11 @@ public class PrediccionDia {
         this.listaVariableFranxa = listaVariableFranxa;
     }
 
-    public String getDataPredicion() {
+    public LocalDate getDataPredicion() {
         return dataPredicion;
     }
 
-    public void setDataPredicion(String dataPredicion) {
+    public void setDataPredicion(LocalDate dataPredicion) {
         this.dataPredicion = dataPredicion;
     }
 
@@ -72,13 +72,14 @@ public class PrediccionDia {
         this.listaVariableFranxa = listaVariableFranxa;
     }
 
+    public void addVariableFranxa (VariableFranxa v){
+        listaVariableFranxa.add(v);
+    }
+
     @Override
     public String toString() {
-        String dateString = dataPredicion;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-        LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
-        LocalDate date = dateTime.toLocalDate();
-        return date + " (Nivel aviso: " + nivelAviso +") , Máxima: " + tMax +" , Mínima: "+tMin+" , Índice Ultravioleta max: "+
+
+        return dataPredicion + " (Nivel aviso: " + nivelAviso +") , Máxima: " + tMax +" , Mínima: "+tMin+" , Índice Ultravioleta max: "+
                 uvMax + System.lineSeparator() +
                 listaVariableFranxa;
     }

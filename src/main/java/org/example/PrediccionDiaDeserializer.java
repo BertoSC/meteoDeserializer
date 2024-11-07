@@ -30,7 +30,25 @@ public class PrediccionDiaDeserializer implements JsonDeserializer<PrediccionDia
 
     }
 
-    public List <VariableFranxa> crearListaFranxa (JsonObject jo){
+    public List crearListaFranxa(JsonObject jo){
+        List<VariableFranxa> lista = new ArrayList<>();
+        for (VariableMeteoroloxica variable : VariableMeteoroloxica.values()) {
+            if (jo.has(variable.getVariable())) { // tiene esa variable de franxa
+                lista.add(crearVariable(variable, jo.get(variable.getVariable()).getAsJsonObject()));
+            }
+
+        }
+        return lista;
+
+    }
+
+    public VariableFranxa crearVariable(VariableMeteoroloxica vm, JsonObject jo) {
+        VariableFranxa temp = new VariableFranxa(vm, jo.get("manha").getAsInt(), jo.get("tarde").getAsInt(), jo.get("noite").getAsInt());
+        return temp;
+    }
+
+
+   /* public List <VariableFranxa> crearListaFranxa (JsonObject jo) {
         List<VariableFranxa> listaVariableFranxa = new ArrayList<>();
 
         JsonObject joC= jo.get("ceo").getAsJsonObject();
@@ -61,4 +79,6 @@ public class PrediccionDiaDeserializer implements JsonDeserializer<PrediccionDia
         VariableFranxa temp = new VariableFranxa(vm, jo.get("manha").getAsInt(), jo.get("tarde").getAsInt(), jo.get("noite").getAsInt());
         return temp;
     }
+
+    */
 }

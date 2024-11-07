@@ -53,8 +53,6 @@ public class PrediccionReaderParser {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     private List<PrediccionDia> readerListaPred(JsonReader reader) {
@@ -63,7 +61,6 @@ public class PrediccionReaderParser {
             reader.beginArray();
             while (reader.hasNext()){
                 lista.add(readerPredDia(reader));
-
             }
             reader.endArray();
             return lista;
@@ -71,8 +68,6 @@ public class PrediccionReaderParser {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     private PrediccionDia readerPredDia(JsonReader reader) {
@@ -84,10 +79,8 @@ public class PrediccionReaderParser {
         int uvMax = 0;
         List<VariableFranxa> listaVariableFranxa = new ArrayList<>();
 
-
         try {
             reader.beginObject();
-
             while (reader.hasNext()) {
                 String tipo = reader.nextName();
                 switch (tipo) {
@@ -130,8 +123,6 @@ public class PrediccionReaderParser {
                         listaVariableFranxa.add(crearVariable(reader, VariableMeteoroloxica.getVariable("vento")));
                         break;
                 }
-
-
             }
             reader.endObject();
             pd = new PrediccionDia(dataPredicion, nivelAviso, tMax, tMin, uvMax, listaVariableFranxa);
