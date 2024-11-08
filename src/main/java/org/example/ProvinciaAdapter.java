@@ -5,6 +5,7 @@ import com.google.gson.stream.JsonReader;
 
 import java.io.StringReader;
 import java.lang.reflect.Type;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +18,10 @@ public class ProvinciaAdapter implements JsonDeserializer<List<Provincia>> {
          for (TipoProvincia tp:TipoProvincia.values()){
             TipoProvincia paraAñadirTipo = tp.getTipo(tp.getTipo());
 
-            List<Concello> listaConcello = jsonDeserializationContext.deserialize();
+            List<Concello> listaConcello = jsonDeserializationContext.deserialize(); //revisar
             JsonArray tempAr= jo.getAsJsonArray(tp.getTipo());
                for (JsonElement je: tempAr) {
-
+                   //revisar
 
                }
 
