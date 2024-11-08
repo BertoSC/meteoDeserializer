@@ -81,6 +81,17 @@ public class Main {
         }
 
 
+        // PARA LA LISTA DE PROVINCIAS (con un deserializer)
+        try {
+            String prov = Files.readString(Path.of("C:\\Users\\a23albertogc\\Desktop\\AD\\meteoDeserializer\\concellosprovincia.json"));
+            Provincia prueba = gson.fromJson(prov, listType);
+            System.out.println(prueba);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
 
 
     }

@@ -78,9 +78,14 @@ public class PrediccionDia {
 
     @Override
     public String toString() {
+        StringBuilder lVF = new StringBuilder();
+        for (VariableFranxa v : listaVariableFranxa) {
+            lVF.append(v).append(System.lineSeparator());
 
-        return dataPredicion + " (Nivel aviso: " + nivelAviso +") , Máxima: " + tMax +" , Mínima: "+tMin+" , Índice Ultravioleta max: "+
-                uvMax + System.lineSeparator() +
-                listaVariableFranxa;
+        }
+            return dataPredicion + " (Nivel aviso: " + nivelAviso + ") , Máxima: " + tMax + " , Mínima: " + tMin + " , Índice Ultravioleta max: " +
+                    uvMax + System.lineSeparator() +
+                    lVF.toString();
+        }
+
     }
-}

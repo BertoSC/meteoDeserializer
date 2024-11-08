@@ -3,12 +3,13 @@ package org.example;
 import java.util.List;
 
 public class Provincia {
+    TipoProvincia tipoProvincia;
     String nombre;
     List<Concello> listaConcello;
 
     public Provincia(){}
 
-    public Provincia(String nombre, List<Concello> listaConcello) {
+    public Provincia(TipoProvincia tp, String nombre, List<Concello> listaConcello) {
         this.nombre = nombre;
         this.listaConcello = listaConcello;
     }
@@ -33,10 +34,19 @@ public class Provincia {
         listaConcello.add(c);
     }
 
+    public TipoProvincia getTipoProvincia() {
+        return tipoProvincia;
+    }
+
+    public void setTipoProvincia(TipoProvincia tipoProvincia) {
+        this.tipoProvincia = tipoProvincia;
+    }
+
     @Override
     public String toString() {
         return "Provincia{" +
-                "nombre='" + nombre + '\'' +
+                "tipoProvincia=" + tipoProvincia +
+                ", nombre='" + nombre + '\'' +
                 ", listaConcello=" + listaConcello +
                 '}';
     }

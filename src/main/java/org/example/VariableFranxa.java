@@ -1,6 +1,7 @@
 package org.example;
 
 public class VariableFranxa {
+        public static final int NO_DATA = -9999;
         private VariableMeteoroloxica variableMeteorologica;
         private int valorManha;
         private int valorTarde;
@@ -51,11 +52,8 @@ public class VariableFranxa {
 
     @Override
     public String toString() {
-        return VariableMeteoroloxica.getVariable(variableMeteorologica.getVariable()) +
-                ": Mañana= " + valorManha +
-                ", Tarde= " + valorTarde +
-                ", Noche =" + valorNoche + System.lineSeparator()
-                ;
+        return  variableMeteorologica + ": (" + (valorManha!=NO_DATA ? valorManha : "-" ) + ", " + (valorTarde!=NO_DATA ? valorTarde : "-" ) + ", "
+                + (valorNoche!=NO_DATA ? valorNoche : "-" )  + ')';
     }
 }
 

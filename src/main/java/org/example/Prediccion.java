@@ -38,7 +38,8 @@ public class Prediccion {
                     .append(BARRA).append(System.lineSeparator());
 
             for (PrediccionDia dia : listaPredDiaConcello) {
-                sb.append(dia).append(System.lineSeparator());
+                sb.append(dia);
+                sb.append(BARRA).append(System.lineSeparator());
             }
 
 
