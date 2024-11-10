@@ -44,10 +44,12 @@ public class Provincia {
 
     @Override
     public String toString() {
-        return "Provincia{" +
-                "tipoProvincia=" + tipoProvincia +
-                ", nombre='" + nombre + '\'' +
-                ", listaConcello=" + listaConcello +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(nombre+":"+System.lineSeparator());
+        for (Concello c:listaConcello){
+            sb.append(c+System.lineSeparator());
+        }
+
+        return  sb.toString();
     }
 }

@@ -1,6 +1,7 @@
 package org.example;
 
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import java.io.StringReader;
@@ -10,29 +11,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProvinciaAdapter implements JsonDeserializer<List<Provincia>> {
+    Type listType = new TypeToken<List<Concello>>(){}.getType();
 
     @Override
     public List<Provincia> deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-        List<Provincia> listaProv = new ArrayList<>();
-        JsonObject jo=jsonElement.getAsJsonObject();
-         for (TipoProvincia tp:TipoProvincia.values()){
+          JsonObject jo= jsonElement.getAsJsonObject();
+          List<Provincia> prov = new ArrayList<>();
+          for (TipoProvincia tp:TipoProvincia.values()){
             TipoProvincia paraAñadirTipo = tp.getTipo(tp.getTipo());
+            JsonArray ja=jo.getAsJsonArray(tp.getTipo());
+            String nom= "";
+            int id=0;
+            List<Concello> listC = jsonDeserializationContext.deserialize(ja,listType);
+            Provincia temp= new Provincia(paraAñadirTipo, tp.getTipo(), listC);
+            prov.add(temp);
 
-            List<Concello> listaConcello = jsonDeserializationContext.deserialize(); //revisar
-            JsonArray tempAr= jo.getAsJsonArray(tp.getTipo());
-               for (JsonElement je: tempAr) {
-                   //revisar
-
-               }
-
-
-
-            String nom= temp.get("nombre").getAsString();
-            int id=temp.get("id").getAsInt();
-            lista.add(new Concello(id, nom));
         }
 
-        prov  = new Provincia(t, t.getTipo(), lista);
+
         return prov;
+        }
     }
-}
+
+

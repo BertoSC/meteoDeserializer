@@ -24,12 +24,14 @@ public class Main {
 
         // para poder crear el tipo de lista de objeto
         Type listType = new TypeToken<List<Concello>>(){}.getType();
+        Type listProvType = new TypeToken<List<Provincia>> (){}.getType();
 
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .registerTypeAdapter(PrediccionDia.class, new PrediccionDiaDeserializer())
                 .registerTypeAdapter(Prediccion.class, new PrediccionDeserializer())
                 .registerTypeAdapter(listType, new ConcelloAdapter())
+                .registerTypeAdapter(listProvType, new ProvinciaAdapter())
                 .create();
 
 /*       // ESTO ERA LECTURA DE LA PREDICCION EN ARCHIVO
@@ -71,7 +73,7 @@ public class Main {
 
         // PARA LA LISTA DE CONCELLOS (con un type adapter)
         try {
-            String s = Files.readString(Path.of("C:\\Users\\a23albertogc\\Desktop\\AD\\meteoDeserializer\\concellos.json"));
+            String s = Files.readString(Path.of("concellos.json"));
             List <Concello> listaConcello = gson.fromJson(s, listType);
             for (Concello c:listaConcello){
                 System.out.println(c);
@@ -83,9 +85,11 @@ public class Main {
 
         // PARA LA LISTA DE PROVINCIAS (con un deserializer)
         try {
-            String prov = Files.readString(Path.of("C:\\Users\\a23albertogc\\Desktop\\AD\\meteoDeserializer\\concellosprovincia.json"));
-            Provincia prueba = gson.fromJson(prov, listType);
-            System.out.println(prueba);
+            String prov = Files.readString(Path.of("concellosprovincia.json"));
+            List<Provincia> prueba = gson.fromJson(prov, listProvType);
+            for (Provincia p: prueba) {
+                System.out.println(p);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
