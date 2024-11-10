@@ -22,10 +22,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // para poder crear el tipo de lista de objeto
+        // creamos tipos personalizados para usar los adaptadores de las listas de objetos
         Type listType = new TypeToken<List<Concello>>(){}.getType();
         Type listProvType = new TypeToken<List<Provincia>> (){}.getType();
 
+        // creamos el Gson con GsonBuilder y registramos todos los adaptadores necesarios para los ejercicios
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .registerTypeAdapter(PrediccionDia.class, new PrediccionDiaDeserializer())
@@ -34,7 +35,7 @@ public class Main {
                 .registerTypeAdapter(listProvType, new ProvinciaAdapter())
                 .create();
 
-/*       // ESTO ERA LECTURA DE LA PREDICCION EN ARCHIVO
+/*       // PARA EL EJ DE LEER DESDE EL ARCHIVO
         try {
             String meteo = Files.readString(Path.of("C:\\Users\\a23albertogc\\Desktop\\AD\\meteoDeserializer\\src\\main\\java\\org\\example\\meteo.json"));
             Prediccion p = gson.fromJson(meteo, Prediccion.class);
@@ -43,7 +44,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 */
-        // PARA EL DESERIALIZER
+        // PARA COMPROBAR QUE EL DESERIALIZER FUNCIONA
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new URI(URL).toURL().openConnection().getInputStream()))) {
 
             Prediccion p = gson.fromJson(br, Prediccion.class);
@@ -57,7 +58,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        // PARA EL READER
+        // PARA COMPROBAR QUE EL READER FUNCIONA
         try (JsonReader jr = new JsonReader(new InputStreamReader(new URI(URL).toURL().openConnection().getInputStream()))) {
             PrediccionReaderParser prp = new PrediccionReaderParser();
             Prediccion p2 = prp.prediccionParser(jr);
@@ -71,7 +72,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        // PARA LA LISTA DE CONCELLOS (con un type adapter)
+        // DESERIALIZAMOS LA LISTA DE CONCELLOS
         try {
             String s = Files.readString(Path.of("concellos.json"));
             List <Concello> listaConcello = gson.fromJson(s, listType);
@@ -83,7 +84,7 @@ public class Main {
         }
 
 
-        // PARA LA LISTA DE PROVINCIAS (con un deserializer)
+        // DESERIALIZAMOS LA LISTA DE PROVINCIAS
         try {
             String prov = Files.readString(Path.of("concellosprovincia.json"));
             List<Provincia> prueba = gson.fromJson(prov, listProvType);
