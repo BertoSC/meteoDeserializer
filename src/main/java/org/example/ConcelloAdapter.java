@@ -17,6 +17,7 @@ public class ConcelloAdapter extends TypeAdapter<List<Concello>> {
     @Override
     public List<Concello> read(JsonReader jsonReader) throws IOException {
         List <Concello> lista = new ArrayList<>();
+        //if (jsonReader.peek()==JsonToken.BEGIN_ARRAY)
         jsonReader.beginArray();
         while (jsonReader.hasNext()){
             lista.add(concelloReader(jsonReader));

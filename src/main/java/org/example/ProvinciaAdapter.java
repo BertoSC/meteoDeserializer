@@ -35,4 +35,8 @@ public class ProvinciaAdapter implements JsonDeserializer<List<Provincia>> {
         }
     }
 
+    // para usar un typeadapter dentro de otro  >>>  pero no le gusta a Pepe, mejor hacerlo todo en la misma en e
+    /* ConcellosAdapter ca = new Concellos Adapter;
+    * objetoprovincia.setConcellos(ca.read(reader))*/
+
 
