@@ -51,7 +51,6 @@ public class AppPrediccion {
                     System.out.println("Saliendo...");
                     System.out.println("Gracias por utilizar la APP");
                     funcionando=false;
-
             }
         }
     }
